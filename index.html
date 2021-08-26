@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Создай гору</title>
+  </head>
+  <body>
+    <script>
+
+      const N = (Number(prompt('Укажите количество пар гор')));
+
+      const x = Number(prompt('Укажите с какой вероятностью каждая ступенька будет оканчиваться обрывом(от 0 до 100)'));
+
+      let H1 = Number(prompt('Укажите высоту первой горы'));
+
+      const H2 = Number(prompt('Укажите высоту второй горы'));
+
+      const up = "◣";
+      const deep = "#";
+      const plat = "|";
+      const down = "◤";
+      let pain = ["]-+",""];//могила//
+      let plant = ["=","-*","=@","==@","===@"];//растения//
+      let diamond = ["⯁","#"];//алмаз//
+
+      for (let y=0; y<N; y++) {
+
+             //ПЕРВАЯ ГОРА//
+
+    outer:outer2: for (let e=0; e<1; e++) {
+
+        const random1 = Math.floor(Math.random() * plant.length);//рандом для растений//
+        console.log(up+ plant[random1]); //первая ступенька//
+          const r = Math.floor(Math.random()*100);
+           if(x>r) {
+            break;
+           }//обрыв с вероятностью//
+
+        for (let i = 1; i < H1-1; i++) {
+        const randomD = Math.floor(Math.random() * diamond.length);//рандом для алмазов//
+        const random = Math.floor(Math.random() * plant.length);//рандом для растений//
+        const d = Math.floor(Math.random()*100);
+         if(d>r) continue outer;//обрыв с вероятностью//
+        console.log(diamond[randomD] + "#".repeat(i-1) + up + plant[random]);
+
+       }//строим высходящий холм//
+
+       const randomP = Math.floor(Math.random() * pain.length);//рандом для могилы//
+       let high = deep.repeat(H1-1)+plat + pain[randomP];//средняя с вершиной//
+       console.log(high);
+       const c = Math.floor(Math.random()*100);
+        if(x>c) {
+         break;
+        }//обрыв с вероятностью//
+
+        for (let i = H1-2; i > 0; i--) {
+         const random = Math.floor(Math.random() * plant.length);//рандом для растений//
+         const randomD = Math.floor(Math.random() * diamond.length);//рандом для алмазов//
+         const s = Math.floor(Math.random()*100);
+          if(x>s)  continue outer2;//обрыв с вероятностью//
+          console.log(diamond[randomD] +'#'.repeat(i-1) + down + plant[random]);
+       }
+        //строим низодящий холм//
+
+        const random2 = Math.floor(Math.random() * plant.length);
+        console.log(down+ plant[random2]);//последняя ступенька//
+
+        const b = Math.floor(Math.random()*100);
+         if(x>b) {
+          break;
+         }//обрыв с вероятностью//
+      }
+
+
+                    //ВТОРАЯ ГОРА//
+    outer4:outer3:for (let w=0; w<1; w++) {
+      const random3 = Math.floor(Math.random() * plant.length);//рандом для растений//
+      console.log(up + plant[random3]); //первая ступенька//
+
+      const r = Math.floor(Math.random()*100);
+       if(x>r) {
+        break;
+       }//обрыв с вероятностью//
+
+       for (let i = 1; i < H2-1; i++) {
+        const random = Math.floor(Math.random() * plant.length);//рандом для растений//
+        const randomD = Math.floor(Math.random() * diamond.length);//рандом для алмазов//
+        const d = Math.floor(Math.random()*100);
+        if(x>d) continue outer3;//обрыв с вероятностью//
+        console.log(diamond[randomD] +'#'.repeat(i-1) + up + plant[random]);
+      }//строим высходящий холм//
+
+
+      const randomP2 = Math.floor(Math.random() * pain.length);//рандом для могилы//
+      const high2 = deep.repeat(H2-1) + plat + pain[randomP2];//средняя с вершиной//
+      console.log(high2);
+
+      const c = Math.floor(Math.random()*100);
+       if(x>c) {
+        break;
+       }//обрыв с вероятностью//
+
+        for (let i = H2-2; i > 0; i--) {
+        const random = Math.floor(Math.random() * plant.length);//рандом для растений//
+        const randomD = Math.floor(Math.random() * diamond.length);//рандом для алмазов//
+        const s = Math.floor(Math.random()*100);
+        if(x>s) continue outer4;//обрыв с вероятностью//
+        console.log(diamond[randomD] +'#'.repeat(i-1) + down + plant[random]);
+      }//строим низодящий холм//
+
+
+      const random4 = Math.floor(Math.random() * plant.length);//рандом для растений//
+      console.log(down+ plant[random4]);//последняя ступенька//
+      const b = Math.floor(Math.random()*100);
+       if(x>b) {
+        break;
+       }//обрыв с вероятностью//
+      }
+    }
+
+
+    </script>
+
+  </body>
+</html>
